@@ -2,7 +2,10 @@
     <div class="carousel-container">
       <div class="carousel" :style="{ transform: `translateX(-${slide * 100}%)` }">
         <div class="carousel-item" v-for="(item, index) in items" :key="index">
-          <img :src="item.src" :alt="item.alt" />
+          <a :href="item.link" target="_blank" rel="noopener noreferrer">
+            <img :src="item.src" :alt="item.alt" />
+          </a>
+          
         </div>
       </div>
       <div class="controls">
@@ -20,11 +23,12 @@
   
   const slide = ref(0)
   const items = ref([
-    { src: '/images/black-desktop.webp', alt: 'Image 1' },
-    { src: '/images/ohi-desktop.webp', alt: 'Image 2' },
-    { src: '/images/landroumer-desktop.webp', alt: 'Image 3' },
-    { src: '/images/arthic-desktop1.webp', alt: 'Image 4' },
-    { src: '/images/outlet-desktop.webp', alt: 'Image 5' },
+    { src: '/images/black-desktop.webp', alt: 'Image 1', link: 'https://www.columbia.com.tr/indirim-outdoor-maceralari' },
+    { src: '/images/ohi-desktop.webp', alt: 'Image 2', link: 'https://www.columbia.com.tr/omni-heat-infinity' },
+    { src: '/images/landroumer-desktop.webp', alt: 'Image 3', link: 'https://www.columbia.com.tr/ready-to-roam' },
+    { src: '/images/arthic-desktop1.webp', alt: 'Image 4', link: 'https://www.columbia.com.tr/heritage-koleksiyonu' },
+    { src: '/images/outlet-desktop.webp', alt: 'Image 5', link: 'https://www.columbia.com.tr/indirim' },
+
   ])
   
   const prevSlide = () => {
@@ -44,12 +48,8 @@
   .carousel-container {
     position: relative;
     width: 100%;
-    
-    margin: auto;
     overflow: hidden;
     background-color: #f1f1f1;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .carousel {
