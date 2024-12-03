@@ -81,10 +81,11 @@
           <a href="#">Aydınlatma Metni</a> | 
           <a href="#">Çerez Politikası</a>
         </p>
-        <div class="brands">
-          <img src="/icons/gozalan.webp" alt="Gözalan">
+        <div class="brands" style="float: right;">
+          <img src="/icons/gozalan.webp" alt="Gözalan" style="margin-bottom: 25px;">
           <img src="/icons/inveon.png" alt="Inveon" style="height: 15px;">
         </div>
+        
       </div>
     </footer>
   </template>
