@@ -16,7 +16,7 @@
         <div class="dropdown-section">
           <h3>Yeni Gelenler</h3>
           <img
-            src="/path/to/your/image.jpg"
+            src="/images/Erkek.webp"
             alt="Yeni Gelenler"
             class="menu-image"
           />
