@@ -33,11 +33,12 @@ import { ref } from 'vue';
 import PromoSection from '~/components/PromoSection.vue';
 import TheHeader from '~/components/TheHeader.vue';
 import TheFooter from '~/components/TheFooter.vue';
+import IconCategories from '~/components/IconCategories.vue';
 
 
 const activeComponent = ref(0);
 const buttons = Array.from({ length: 10 }, (_, i) => `Button ${i + 1}`);
-const components = [DiscoverMore, MembershipPromotion, TheCarousel, TheParallax, PromoSection, TheHeader, TheFooter];
+const components = [DiscoverMore, MembershipPromotion, TheCarousel, TheParallax, PromoSection, TheHeader, TheFooter, IconCategories];
 
 const setActiveComponent = (index: number) => {
   console.log('Tıklanan buton:', index); // Kontrol için log
