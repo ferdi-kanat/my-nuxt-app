@@ -7,15 +7,20 @@
         </NuxtLink>
       </div>
       <ul class="nav-links">
-        <li v-for= "link in links" :key="link.name">
-          <NuxtLink :to="link.path" :class="{ highlight: link.highlight }">{{ link.name }}</NuxtLink>
+        <li v-for= "link in links" :key="link.name" class="nav-item">
+          <DropdownMenu>
+            <template #trigger>
+              <NuxtLink :to="link.path" :class="{ highlight: link.highlight }">{{ link.name }}</NuxtLink>
+            </template>
+          </DropdownMenu>
         </li>
       </ul>
       <div class="search-bar">
         <input type="text" placeholder="Arama yapın" class="search-input" />
       </div>
       <div class="icons">
-        <NuxtLink to="/account">
+        <AccountDropdown v-if="showDropdown" />
+        <NuxtLink @click.prevent="toggleDropdown">
           <i class="fas fa-user"></i>
         </NuxtLink>
         <NuxtLink to="/wishlist">
@@ -33,6 +38,12 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import DropdownMenu from './DropdownMenu.vue';
+const showDropdown = ref(false);
+
+const toggleDropdown = () => {
+  showDropdown.value = !showDropdown.value;
+};
 
 const links = ref([
   { name: 'Erkek', path: '/erkek' },

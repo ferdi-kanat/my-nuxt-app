@@ -6,8 +6,8 @@ import TheHeader from './components/TheHeader.vue';
 <template>
   <div>
   </div>
-  <TheHeader />
-  <PromoSection />
+  
+  
   <NuxtPage />
-  <TheFooter />
+  
 </template>
