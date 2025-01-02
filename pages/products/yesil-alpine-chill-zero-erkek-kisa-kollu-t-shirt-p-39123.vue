@@ -91,16 +91,9 @@
           <div class="size-section">
             <div class="size-header">
               <p>Beden:</p>
-              <div class="stock-info">
-                (Son {{ stockCount }} ürün)
-              </div>
+              
             </div>
-            <div class="size-finder">
-              <button class="size-finder-btn">
-                <img src="/icons/ruler.PNG" alt="Size finder" />
-                <span>Bedenimi Bul</span>
-              </button>
-            </div>
+            
             <div class="size-options">
               <button v-for="size in sizes" 
                       :key="size"
@@ -154,7 +147,7 @@ const product = ref({
     {
       id: 1,
       name: "PFG Gri",
-      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/pfg-gri_1109-231107193323920.jpeg"
+      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/pfg-gri_1256-231107194153565.jpeg"
     },
     {
       id: 2,

@@ -2,10 +2,10 @@ import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: [] as Array<{ id: number, name: string, image: string, color: string, size: string, price: number, quantity: number }>
+    items: [] as Array<{ id: number, name: string, image: string, color: string, size: string, price: number, quantity: number, code: string }>
   }),
   actions: {
-    addItem(item: { id: number, name: string, image: string, color: string, size: string, price: number, quantity: number }) {
+    addItem(item: { id: number, name: string, image: string, color: string, size: string, price: number, quantity: number, code: string }) {
       const existingItem = this.items.find(i => i.id === item.id && i.color === item.color && i.size === item.size)
       if (existingItem) {
         existingItem.quantity += item.quantity

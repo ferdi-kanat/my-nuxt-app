@@ -91,16 +91,9 @@
           <div class="size-section">
             <div class="size-header">
               <p>Beden:</p>
-              <div class="stock-info">
-                (Son {{ stockCount }} ürün)
-              </div>
+              
             </div>
-            <div class="size-finder">
-              <button class="size-finder-btn">
-                <img src="/icons/ruler.PNG" alt="Size finder" />
-                <span>Bedenimi Bul</span>
-              </button>
-            </div>
+            
             <div class="size-options">
               <button v-for="size in sizes" 
                       :key="size"
@@ -157,8 +150,8 @@ const product = ref({
       image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/siyah_823-231107193058852.jpeg"
     }
   ],
-  discountedPrice: 1649.95,
-  originalPrice: 2999.90,
+  discountedPrice: 2914.95,
+  originalPrice: 5299.90,
   discount: true
 })
 const productImages = ref([

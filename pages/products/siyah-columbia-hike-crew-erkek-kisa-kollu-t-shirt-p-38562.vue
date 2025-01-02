@@ -91,16 +91,7 @@
           <div class="size-section">
             <div class="size-header">
               <p>Beden:</p>
-              <div class="stock-info">
-                (Son {{ stockCount }} ürün)
-              </div>
-            </div>
-            <div class="size-finder">
-              <button class="size-finder-btn">
-                <img src="/icons/ruler.PNG" alt="Size finder" />
-                <span>Bedenimi Bul</span>
-              </button>
-            </div>
+            </div> 
             <div class="size-options">
               <button v-for="size in sizes" 
                       :key="size"
@@ -158,12 +149,12 @@ const product = ref({
     },
     {
       id: 2,
-      name: "Bordo",
-      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/bordo_1109-231107193323920.jpeg"
+      name: "PFG Lacivert",
+      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/lacivert_851-231107193113920.jpeg"
     }
   ],
-  discountedPrice: 2914.95,
-  originalPrice: 5299.90,
+  discountedPrice: 989.95,
+  originalPrice: 1799.90,
   discount: true
 })
 const productImages = ref([

@@ -98,7 +98,15 @@ const products: Product[] = [
         id: 2,
         name: "Bal Sarısı",
         image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/bal-sarisi_1109-231107193323920.jpeg"
-      }
+      },
+    { id:3,
+      name: "Kiremit",
+      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/kiremit_1196-231107193842012.jpeg"
+    },
+    { id:4,
+      name: "Yeşil",
+      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/yesil_896-231107193122545.jpeg"
+    }
     ],
     discountedPrice: 2309.95,
     originalPrice: 4199.90,
