@@ -6,6 +6,7 @@
   <TheParallax />
   <DiscoverMore />
   <IconCategories />
+  <SwipperWrapper />
   <PromoSection />
   <TheFooter />
 </template>

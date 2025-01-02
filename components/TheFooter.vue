@@ -1,5 +1,53 @@
 <template>
+  <div class="footer-box">
+      <div class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Phone -->
+          <div class="contact-item">
+            <div class="icon" >
+              <i class="fas fa-phone"></i>
+            </div>
+            <p>0 (850) 200 11 41</p>
+            <p><b>Hafta içi: 08:30 - 17:00</b></p>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-item">
+            <div class="icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <NuxtLink to="/contact">
+              <p>E-posta</p>
+              <p>göndermek için tıkla</p>
+            </NuxtLink>
+          </div>
+
+          <!-- FAQ -->
+          <div class="contact-item">
+            <NuxtLink to="/sss">
+              <div class="icon">
+                <i class="fas fa-question-circle"></i>
+              </div>
+              <p>Sıkça Sorulan Sorular</p>
+            </NuxtLink>
+          </div>
+
+          <!-- Store Locations -->
+          <div class="contact-item">
+            <NuxtLink to="/stores">
+              <div class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <p>Satış Noktaları</p>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
     <footer class="footer">
+      
       <div style="padding: 12px;  text-align: center;">
         <img src="/icons/columbia.webp" alt="Columbia" width="200px">
       </div>
@@ -91,6 +139,63 @@
   </template>
   
   <style scoped>
+  .footer-box {
+  display: block;
+  width: 100%;
+  max-width: 1349px;
+  height: 141px;
+  font-family: 'OpenSans', sans-serif;
+  font-size: 14px;
+  line-height: 20.02px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+  .contact-section {
+  background-color: #f5f5f5;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.contact-item {
+  text-align: center;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-item p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
   .footer {
     background-color: #333;
     color: #fff;
