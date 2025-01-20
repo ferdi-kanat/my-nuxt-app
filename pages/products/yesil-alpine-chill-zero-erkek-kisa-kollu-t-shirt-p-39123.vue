@@ -150,10 +150,25 @@ const product = ref({
       image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/pfg-gri_1256-231107194153565.jpeg"
     },
     {
-      id: 2,
-      name: "Yeşil",
-      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/yesil_1704-240215080120005.jpeg"
-    }
+        id: 2,
+        name: "Lacivert",
+        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/lacivert_851-231107193113920.jpeg"
+      },
+      {
+        id: 3,
+        name: "Beyaz",
+        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/beyaz_1021-231107193126654.jpeg"
+      },
+      {
+        id: 4,
+        name: "Siyah",
+        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/siyah_823-231107193058852.jpeg"
+      },
+      {
+        id: 5,
+        name: "Yeşil",
+        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/yesil_1704-240215080120005.jpeg"
+      }
   ],
   discountedPrice: 1649.95,
   originalPrice: 2999.90,
@@ -179,21 +194,24 @@ const selectColor = (color: { id: number, name: string, image: string }) => {
   selectedColor.value = color
 }
 
-const addToCart = () => {
-  const productToAdd = {
-    id: Date.now(), // Benzersiz bir ID
-    name: product.value.name,
-    image: productImages.value[0].large,
-    color: selectedColor.value.name,
-    size: selectedSize.value,
-    code: 'AO3561_349', // Ürün kodunu dinamik olarak alabilirsiniz
-    price: product.value.discountedPrice, // Fiyatı dinamik olarak alabilirsiniz
-    quantity: 1
+const addToCart = async () => {
+  try {
+    const productToAdd = {
+      name: product.value.name,
+      image: productImages.value[0].large,
+      color: selectedColor.value.name,
+      size: selectedSize.value,
+      code: 'AO3561_349',
+      price: product.value.discountedPrice,
+      quantity: 1
+    };
+    
+    await cartStore.addItem(productToAdd);
+    navigateTo('/cart');
+  } catch (error) {
+    console.error('Error adding to cart:', error);
   }
-  
-  cartStore.addItem(productToAdd)
-  navigateTo('/cart')
-}
+};
 
 const previousSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + productImages.value.length) % productImages.value.length

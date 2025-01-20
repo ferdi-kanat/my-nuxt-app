@@ -2,85 +2,72 @@
   <div>
     <TheHeader />
     <div class="product-container">
-      <div class="grid-container">
+      <div v-if="loading" class="loading">
+        Loading...
+      </div>
+      <div v-else-if="error" class="error">
+        {{ error }}
+      </div>
+      <div v-else class="grid-container">
         <!-- Product Image Slider Section -->
         <div class="product-slider-section">
           <div class="slider-container">
             <!-- Navigation Arrows -->
             <div class="nav-arrow nav-prev" @click="previousSlide">
               <svg viewBox="0 0 24 24">
-                <path fill="#A6A6A6" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+          <path fill="#A6A6A6" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
               </svg>
             </div>
 
             <!-- Main Image -->
             <div class="main-image-container">
               <div class="slider-track" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-                <div v-for="(image, index) in productImages" :key="index" class="slide">
-                  <figure class="image-figure">
-                    <picture>
-                      <source :srcset="image.large">
-                      <img :src="image.large" :alt="product.name" class="product-image">
-                    </picture>
-                  </figure>
-                </div>
+          <div v-for="(image, index) in productImages" :key="index" class="slide">
+            <figure class="image-figure">
+              <picture>
+                <source :srcset="image.large">
+                <img :src="image.large" :alt="product?.name" class="product-image">
+              </picture>
+            </figure>
+          </div>
               </div>
             </div>
 
             <!-- Navigation Arrows -->
             <div class="nav-arrow nav-next" @click="nextSlide">
               <svg viewBox="0 0 24 24">
-                <path fill="#000000" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+          <path fill="#000000" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
               </svg>
-            </div>
-
-            <!-- Thumbnails -->
-            <div class="thumbnail-container">
-              <ul class="thumbnail-list">
-                <li v-for="(image, index) in productImages" 
-                    :key="index" 
-                    :class="{ active: currentSlide === index }"
-                    @click="setSlide(index)">
-                  <img :src="image.thumb" 
-                       :alt="product.name" 
-                       class="thumbnail-image">
-                </li>
-              </ul>
             </div>
           </div>
         </div>
 
-        <!-- Right side - Product Details Section -->
+        <!-- Product Details Section -->
         <div class="product-details-section">
-          <!-- Product Title and Share -->
           <div class="product-header">
-            <h1 class="product-title">{{ product.name }}</h1>
+            <h1 class="product-title">{{ product?.name }}</h1>
           </div>
+
           <!-- Price Section -->
           <div class="price-section">
             <div class="price-container">
-              <span class="discounted-price">{{ formatPrice(product.discountedPrice) }} TL</span>
-              <span class="original-price">{{ formatPrice(product.originalPrice) }} TL</span>
+              <span class="discounted-price">{{ formatPrice(product?.discountedPrice ?? 0) }} TL</span>
+              <span class="original-price">{{ formatPrice(product?.originalPrice ?? 0) }} TL</span>
             </div>
             <div class="discount-badge">
               <p>İndirim %{{ discountPercentage }}</p>
             </div>
           </div>
 
-          <!-- Member Discount Info -->
-          <div class="member-discount">
-            <p>Columbia Dünyası Üyelerine Sepette Ek %10 İndirim</p>
-          </div>
-
           <!-- Color Selection -->
           <div class="color-section">
             <div class="color-label">
-              <p>Renk: {{ selectedColor.name }}</p>
+              <p>Renk: {{ selectedColor?.name }}</p>
             </div>
             <div class="color-options">
-              <div v-for="color in product.colors" 
+              <div v-for="color in product?.colors" 
                    :key="color.id" 
-                   :class="['color-option', { active: color.id === selectedColor.id }]"
+                   :class="['color-option', { active: color.id === selectedColor?.id }]"
                    @click="selectColor(color)">
                 <img :src="color.image" :alt="color.name" />
               </div>
@@ -89,9 +76,6 @@
 
           <!-- Size Selection -->
           <div class="size-section">
-            <div class="size-header">
-              <p>Beden:</p>
-            </div> 
             <div class="size-options">
               <button v-for="size in sizes" 
                       :key="size"
@@ -100,29 +84,11 @@
                 {{ size }}
               </button>
             </div>
-            <div class="size-guide">
-              <img src="/icons/ruler.PNG" alt="Size guide" />
-              <a href="#">Beden Tablosu</a>
-            </div>
           </div>
 
           <!-- Add to Cart Section -->
           <div class="cart-section">
-            <div class="cart-notification">
-              <p>Bu ürün {{ cartCount }} kişinin sepetinde!</p>
-            </div>
             <button class="add-to-cart-btn" @click="addToCart">Sepete Ekle</button>
-            <button class="price-alert-btn">Fiyatı Düşünce Haber Ver</button>
-          </div>
-
-          <!-- Store Stock Check -->
-          <div class="store-stock">
-            <button class="store-stock-btn">
-                <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z" />
-                </svg>
-              <span>Mağaza Stoklarını Görüntüle</span>
-            </button>
           </div>
         </div>
       </div>
@@ -131,102 +97,105 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { Product, ProductColor, ProductImage } from '~/types/product'
 import { useCartStore } from '~/stores/cart'
 
+
+const route = useRoute()
+const productStore = useProductStore()
 const cartStore = useCartStore()
-const currentSlide = ref(0)
-const product = ref({
-  id: 38562,
-  name: "Columbia Hike Crew Erkek Kısa Kollu T-Shirt Siyah",
-  image: "https://img-phantomcolumbia.mncdn.com/mnresize/247/-/img/assets/base/originals/AO1419_011-0-240927070949534.jpg",
-  colors: [
-    {
-      id: 1,
-      name: "Lacivert",
-      image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/lacivert_851-231107193113920.jpeg"
-    },
-      {
-        id: 2,
-        name: "Bordo",
-        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/bordo_842-231107193110579.jpeg"
-      },
-      {
-        id: 3,
-        name: "Yeşil",
-        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/yesil_1274-231107194205159.jpeg"
-      },
-      {
-        id: 4,
-        name: "Lacivert",
-        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/lacivert_1295-231107194226557.jpeg"
-      },
-      {
-        id: 5,
-        name: "Koyu Gri",
-        image: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/koyu-gri_853-231107193114393.jpeg"
-      }
-  ],
-  discountedPrice: 989.95,
-  originalPrice: 1799.90,
-  discount: true
-})
-const productImages = ref([
-  { large: "https://img-phantomcolumbia.mncdn.com/mnresize/247/-/img/assets/base/originals/AO1419_011-0-240927070949534.jpg", thumb: "https://img-phantomcolumbia.mncdn.com/mnresize/24/-/img/colors/lacivert_851-231107193113920.jpeg" }
-])
-const discountPercentage = 45
-const selectedSize = ref('M')
-const stockCount = ref(5)
-const cartCount = ref(34)
 
-const selectedColor = ref(product.value.colors[0])
+// Typed reactive refs
+const product = ref<Product | null>(null)
+const loading = ref<boolean>(true)
+const error = ref<string | null>(null)
+const currentSlide = ref<number>(0)
+const selectedSize = ref<string>('M')
+const selectedColor = ref<ProductColor | null>(null)
+const sizes = ref<string[]>(['XS', 'S', 'M', 'L', 'XL', '2XL'])
+const discountPercentage = ref<number>(45)
+const productImages = ref<ProductImage[]>([])
 
-const sizes = ref(['XS', 'S', 'M', 'L', 'XL', '2XL'])
-
-const selectSize = (size: string) => {
-  selectedSize.value = size
-}
-
-const selectColor = (color: { id: number, name: string, image: string }) => {
+// Type-safe methods
+const selectColor = (color: ProductColor): void => {
   selectedColor.value = color
 }
 
-const addToCart = async () => {
+const selectSize = (size: string): void => {
+  selectedSize.value = size
+}
+
+const addToCart = async (): Promise<void> => {
+  if (!product.value || !selectedColor.value) return;
+  
   try {
     const productToAdd = {
       name: product.value.name,
-      image: productImages.value[0].large,
-      color: selectedColor.value.name,
+      image: productImages.value[0]?.large || '',
+      color: selectedColor.value.name, 
       size: selectedSize.value,
-      code: 'AO1419_011',
+      code: product.value.code || '',
       price: product.value.discountedPrice,
       quantity: 1
     };
     
+    // Firebase store güncellemesi
     await cartStore.addItem(productToAdd);
+    // Başarılı ekleme sonrası sepet sayfasına yönlendirme
     navigateTo('/cart');
   } catch (error) {
     console.error('Error adding to cart:', error);
   }
 };
 
-const previousSlide = () => {
+const previousSlide = (): void => {
   currentSlide.value = (currentSlide.value - 1 + productImages.value.length) % productImages.value.length
 }
 
-const nextSlide = () => {
+const nextSlide = (): void => {
   currentSlide.value = (currentSlide.value + 1) % productImages.value.length
 }
 
-const setSlide = (index: number) => {
+const setSlide = (index: number): void => {
   currentSlide.value = index
 }
 
-const formatPrice = (price: number) => {
+const formatPrice = (price: number): string => {
   return price.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
+
+// Fetch product data with type safety
+onMounted(async () => {
+  try {
+    const productId = parseInt(route.params.id as string)
+    const productData = await productStore.fetchProductById(productId)
+    
+    if (productData) {
+      product.value = productData
+      selectedColor.value = productData.colors[0]
+      
+      // Ana ürün resmini ve renk küçük resmini kullanarak resim array'ini oluştur
+      productImages.value = [{
+        large: productData.image,
+        thumb: selectedColor.value.image
+      }]
+
+      // Eğer ürünün ek resimleri varsa onları da ekle
+      if (productData.images?.length) {
+        productImages.value = [...productImages.value, ...productData.images]
+      }
+    }
+  } catch (err) {
+    error.value = 'Ürün yüklenirken bir hata oluştu'
+  } finally {
+    loading.value = false
+  }
+})
 </script>
+
+<!-- Rest of your template remains the same -->
 
 <style scoped>
 .product-container {

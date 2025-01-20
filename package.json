@@ -14,7 +14,10 @@
     "@nuxt/content": "^2.13.4",
     "@nuxt/ui": "^2.20.0",
     "@pinia/nuxt": "^0.9.0",
+    "@prisma/client": "^6.2.0",
+    "firebase": "^11.1.0",
     "nuxt": "^3.14.1592",
+    "pg": "^8.13.1",
     "pinia": "^2.3.0",
     "swiper": "^11.1.15",
     "vue": "latest",
@@ -22,7 +25,10 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^3.0.2",
-    "@types/node": "^22.10.0",
+    "@types/node": "^22.10.5",
+    "@types/pg": "^8.11.10",
+    "prisma": "^6.2.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }
 }

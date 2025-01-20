@@ -174,21 +174,24 @@ const selectColor = (color: { id: number, name: string, image: string }) => {
   selectedColor.value = color
 }
 
-const addToCart = () => {
-  const productToAdd = {
-    id: Date.now(), // Benzersiz bir ID
-    name: product.value.name,
-    image: productImages.value[0].large,
-    color: selectedColor.value.name,
-    size: selectedSize.value,
-    code: 'BY1156_010', // Ürün kodunu dinamik olarak alabilirsiniz
-    price: product.value.discountedPrice, // Fiyatı dinamik olarak alabilirsiniz
-    quantity: 1
+const addToCart = async () => {
+  try {
+    const productToAdd = {
+      name: product.value.name,
+      image: productImages.value[0].large,
+      color: selectedColor.value.name,
+      size: selectedSize.value,
+      code: 'BY1156_010',
+      price: product.value.discountedPrice,
+      quantity: 1
+    };
+    
+    await cartStore.addItem(productToAdd);
+    navigateTo('/cart');
+  } catch (error) {
+    console.error('Error adding to cart:', error);
   }
-  
-  cartStore.addItem(productToAdd)
-  navigateTo('/cart')
-}
+};
 
 const previousSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + productImages.value.length) % productImages.value.length
