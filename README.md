@@ -1,75 +1,125 @@
-# Nuxt Minimal Starter
+# My Nuxt.js App
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to My Nuxt.js App! This project is a recreation of an existing website's homepage using Nuxt.js, Vue.js, TypeScript, and Firebase.
 
-## Setup
+## Table of Contents
+- [About](#about)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Development](#development)
+- [Production](#production)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-Make sure to install dependencies:
+## About
+This project is a Nuxt.js application designed to recreate the homepage of an existing website using modern web technologies such as Nuxt.js, Vue.js, TypeScript, and Firebase. We created the Columbia's homepage.
 
-```bash
+## Getting Started
+
+### Prerequisites
+Before you begin, ensure you have met the following requirements:
+- Node.js (version >= 14.0.0)
+- npm, pnpm, yarn, or bun package manager
+
+### Installation
+To install the dependencies, run one of the following commands:
+
+
 # npm
+```bash
 npm install
+```
 
 # pnpm
+```bash
 pnpm install
+```
 
 # yarn
+```bash
 yarn install
-
+```
 # bun
+```bash
 bun install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
+Development
+To start the development server on http://localhost:3000, run one of the following commands:
 # npm
-npm run dev
+```bash
+npm dev
+```
 
 # pnpm
+```bash
 pnpm dev
+```
 
 # yarn
+```bash
 yarn dev
-
+```
 # bun
+```bash
 bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
+Production
+To build the application for production, run one of the following commands:
 # npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```bash
+npm build
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
 # pnpm
-pnpm preview
+```bash
+pnpm build
+```
 
 # yarn
-yarn preview
-
+```bash
+yarn build
+```
 # bun
+```bash
+bun build
+```
+To locally preview the production build, run one of the following commands:
+# npm
+```bash
+npm run preview
+```
+
+# pnpm
+```bash
+pnpm preview
+```
+
+# yarn
+```bash
+yarn preview
+```
+# bun
+```bash
 bun run preview
 ```
+Deployment
+For detailed information on how to deploy your Nuxt.js application, check out the Nuxt deployment documentation.
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Contributing
+Contributions are welcome! Please follow these steps:
+
+Fork the repository.
+Create a new branch (git checkout -b feature/YourFeature).
+Commit your changes (git commit -m 'Add some feature').
+Push to the branch (git push origin feature/YourFeature).
+Open a Pull Request.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Acknowledgments
+Nuxt.js Documentation
+Vue.js
+Other resources and tools used in this project.
