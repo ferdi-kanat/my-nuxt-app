@@ -26,15 +26,12 @@ Before you begin, ensure you have met the following requirements:
 
 ### Installation
 To install the dependencies, run one of the following commands:
-
-
-# npm
 ```bash
+# npm
 npm install
 ```
-
-# pnpm
 ```bash
+# pnpm
 pnpm install
 ```
 
@@ -42,67 +39,61 @@ pnpm install
 ```bash
 yarn install
 ```
-# bun
 ```bash
+# bun
 bun install
 ```
 Development
 To start the development server on http://localhost:3000, run one of the following commands:
-# npm
 ```bash
+# npm
 npm dev
 ```
-
-# pnpm
 ```bash
+# pnpm
 pnpm dev
 ```
-
-# yarn
 ```bash
+# yarn
 yarn dev
 ```
-# bun
 ```bash
+# bun
 bun run dev
 ```
 Production
 To build the application for production, run one of the following commands:
-# npm
 ```bash
+# npm
 npm build
 ```
-
-# pnpm
 ```bash
+# pnpm
 pnpm build
 ```
-
-# yarn
 ```bash
+# yarn
 yarn build
 ```
-# bun
 ```bash
+# bun
 bun build
 ```
 To locally preview the production build, run one of the following commands:
-# npm
 ```bash
+# npm
 npm run preview
 ```
-
-# pnpm
 ```bash
+# pnpm
 pnpm preview
 ```
-
-# yarn
 ```bash
+# yarn
 yarn preview
 ```
-# bun
 ```bash
+# bun
 bun run preview
 ```
 Deployment
